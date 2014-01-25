@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "panelsAppDelegate.h"
+#import "ComicShelf.h"
 
-@interface panelsBaseTableController : UITableViewController
+@interface panelsBaseTableController : UITableViewController <UIActionSheetDelegate>
 
 @end

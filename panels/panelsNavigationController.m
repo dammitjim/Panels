@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Panels";
     }
     return self;
 }
@@ -27,6 +28,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationBar.titleTextAttributes = @{
+                                               NSForegroundColorAttributeName : [UIColor blackColor]
+                                               };
+    
+    self.navigationBar.tintColor = [UIColor orangeColor];
 }
 
 - (void)didReceiveMemoryWarning

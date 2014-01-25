@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B33722BA187F398900C56B3D /* Unrar4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33722B9187F398900C56B3D /* Unrar4iOS.framework */; };
+		B33722C0187F39F500C56B3D /* RARHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = B33722BF187F39F500C56B3D /* RARHandler.mm */; };
+		B33722CC187F53A300C56B3D /* panelsAddComicTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33722CB187F53A300C56B3D /* panelsAddComicTableController.m */; };
+		B33722D218808FB500C56B3D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B33722CF18808FB500C56B3D /* SVProgressHUD.bundle */; };
+		B33722D318808FB500C56B3D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B33722D118808FB500C56B3D /* SVProgressHUD.m */; };
+		B33722D518808FCB00C56B3D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33722D418808FCB00C56B3D /* QuartzCore.framework */; };
+		B33722DB1880AF7600C56B3D /* panelsComicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B33722DA1880AF7600C56B3D /* panelsComicCell.m */; };
+		B33722DE1880C37300C56B3D /* panelsCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B33722DD1880C37300C56B3D /* panelsCollectionCell.m */; };
+		B368B524187DD58E0017CCDE /* ComicShelf.m in Sources */ = {isa = PBXBuildFile; fileRef = B368B523187DD58E0017CCDE /* ComicShelf.m */; };
 		B3CEBA49187DC82B008F2E8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CEBA48187DC82B008F2E8A /* Foundation.framework */; };
 		B3CEBA4B187DC82B008F2E8A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CEBA4A187DC82B008F2E8A /* CoreGraphics.framework */; };
 		B3CEBA4D187DC82B008F2E8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CEBA4C187DC82B008F2E8A /* UIKit.framework */; };
@@ -14,7 +23,6 @@
 		B3CEBA55187DC82B008F2E8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3CEBA53187DC82B008F2E8A /* InfoPlist.strings */; };
 		B3CEBA57187DC82B008F2E8A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA56187DC82B008F2E8A /* main.m */; };
 		B3CEBA5B187DC82B008F2E8A /* panelsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA5A187DC82B008F2E8A /* panelsAppDelegate.m */; };
-		B3CEBA5E187DC82B008F2E8A /* panels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA5C187DC82B008F2E8A /* panels.xcdatamodeld */; };
 		B3CEBA60187DC82B008F2E8A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CEBA5F187DC82B008F2E8A /* Images.xcassets */; };
 		B3CEBA67187DC82B008F2E8A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CEBA66187DC82B008F2E8A /* XCTest.framework */; };
 		B3CEBA68187DC82B008F2E8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CEBA48187DC82B008F2E8A /* Foundation.framework */; };
@@ -22,6 +30,13 @@
 		B3CEBA6A187DC82B008F2E8A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CEBA4E187DC82B008F2E8A /* CoreData.framework */; };
 		B3CEBA72187DC82B008F2E8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3CEBA70187DC82B008F2E8A /* InfoPlist.strings */; };
 		B3CEBA74187DC82B008F2E8A /* panelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA73187DC82B008F2E8A /* panelsTests.m */; };
+		B3CEBA82187DC864008F2E8A /* panels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA80187DC864008F2E8A /* panels.xcdatamodeld */; };
+		B3CEBA84187DC96D008F2E8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3CEBA83187DC96D008F2E8A /* Main.storyboard */; };
+		B3CEBA87187DC9D2008F2E8A /* panelsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA86187DC9D2008F2E8A /* panelsNavigationController.m */; };
+		B3CEBA8A187DC9EA008F2E8A /* panelsBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA89187DC9EA008F2E8A /* panelsBaseTableController.m */; };
+		B3CEBA8D187DC9FA008F2E8A /* panelsCollectionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA8C187DC9FA008F2E8A /* panelsCollectionTableController.m */; };
+		B3CEBA91187DCA2F008F2E8A /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA90187DCA2F008F2E8A /* Collection.m */; };
+		B3CEBA94187DCA2F008F2E8A /* Comic.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA93187DCA2F008F2E8A /* Comic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +50,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B33722B9187F398900C56B3D /* Unrar4iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Unrar4iOS.framework; path = panels/Frameworks/Unrar4iOS.framework; sourceTree = "<group>"; };
+		B33722BE187F39F500C56B3D /* RARHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RARHandler.h; sourceTree = "<group>"; };
+		B33722BF187F39F500C56B3D /* RARHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RARHandler.mm; sourceTree = "<group>"; };
+		B33722CA187F53A300C56B3D /* panelsAddComicTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsAddComicTableController.h; sourceTree = "<group>"; };
+		B33722CB187F53A300C56B3D /* panelsAddComicTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsAddComicTableController.m; sourceTree = "<group>"; };
+		B33722CE18808FB500C56B3D /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		B33722CF18808FB500C56B3D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		B33722D018808FB500C56B3D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		B33722D118808FB500C56B3D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		B33722D418808FCB00C56B3D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B33722D91880AF7600C56B3D /* panelsComicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsComicCell.h; sourceTree = "<group>"; };
+		B33722DA1880AF7600C56B3D /* panelsComicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsComicCell.m; sourceTree = "<group>"; };
+		B33722DC1880C37300C56B3D /* panelsCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsCollectionCell.h; sourceTree = "<group>"; };
+		B33722DD1880C37300C56B3D /* panelsCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsCollectionCell.m; sourceTree = "<group>"; };
+		B368B522187DD58E0017CCDE /* ComicShelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicShelf.h; sourceTree = "<group>"; };
+		B368B523187DD58E0017CCDE /* ComicShelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicShelf.m; sourceTree = "<group>"; };
 		B3CEBA45187DC82B008F2E8A /* panels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = panels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CEBA48187DC82B008F2E8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3CEBA4A187DC82B008F2E8A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -46,13 +77,24 @@
 		B3CEBA58187DC82B008F2E8A /* panels-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "panels-Prefix.pch"; sourceTree = "<group>"; };
 		B3CEBA59187DC82B008F2E8A /* panelsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = panelsAppDelegate.h; sourceTree = "<group>"; };
 		B3CEBA5A187DC82B008F2E8A /* panelsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = panelsAppDelegate.m; sourceTree = "<group>"; };
-		B3CEBA5D187DC82B008F2E8A /* panels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = panels.xcdatamodel; sourceTree = "<group>"; };
 		B3CEBA5F187DC82B008F2E8A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B3CEBA65187DC82B008F2E8A /* panelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = panelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CEBA66187DC82B008F2E8A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B3CEBA6F187DC82B008F2E8A /* panelsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "panelsTests-Info.plist"; sourceTree = "<group>"; };
 		B3CEBA71187DC82B008F2E8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3CEBA73187DC82B008F2E8A /* panelsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = panelsTests.m; sourceTree = "<group>"; };
+		B3CEBA81187DC864008F2E8A /* panels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = panels.xcdatamodel; sourceTree = "<group>"; };
+		B3CEBA83187DC96D008F2E8A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
+		B3CEBA85187DC9D2008F2E8A /* panelsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsNavigationController.h; sourceTree = "<group>"; };
+		B3CEBA86187DC9D2008F2E8A /* panelsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsNavigationController.m; sourceTree = "<group>"; };
+		B3CEBA88187DC9EA008F2E8A /* panelsBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsBaseTableController.h; sourceTree = "<group>"; };
+		B3CEBA89187DC9EA008F2E8A /* panelsBaseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsBaseTableController.m; sourceTree = "<group>"; };
+		B3CEBA8B187DC9FA008F2E8A /* panelsCollectionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsCollectionTableController.h; sourceTree = "<group>"; };
+		B3CEBA8C187DC9FA008F2E8A /* panelsCollectionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsCollectionTableController.m; sourceTree = "<group>"; };
+		B3CEBA8F187DCA2F008F2E8A /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
+		B3CEBA90187DCA2F008F2E8A /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
+		B3CEBA92187DCA2F008F2E8A /* Comic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comic.h; sourceTree = "<group>"; };
+		B3CEBA93187DCA2F008F2E8A /* Comic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33722D518808FCB00C56B3D /* QuartzCore.framework in Frameworks */,
+				B33722BA187F398900C56B3D /* Unrar4iOS.framework in Frameworks */,
 				B3CEBA4B187DC82B008F2E8A /* CoreGraphics.framework in Frameworks */,
 				B3CEBA4F187DC82B008F2E8A /* CoreData.framework in Frameworks */,
 				B3CEBA4D187DC82B008F2E8A /* UIKit.framework in Frameworks */,
@@ -81,6 +125,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B33722CD18808FB500C56B3D /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				B33722CE18808FB500C56B3D /* SVProgressHUD-Prefix.pch */,
+				B33722CF18808FB500C56B3D /* SVProgressHUD.bundle */,
+				B33722D018808FB500C56B3D /* SVProgressHUD.h */,
+				B33722D118808FB500C56B3D /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		B3CEBA3C187DC82B008F2E8A = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +158,8 @@
 		B3CEBA47187DC82B008F2E8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B33722D418808FCB00C56B3D /* QuartzCore.framework */,
+				B33722B9187F398900C56B3D /* Unrar4iOS.framework */,
 				B3CEBA48187DC82B008F2E8A /* Foundation.framework */,
 				B3CEBA4A187DC82B008F2E8A /* CoreGraphics.framework */,
 				B3CEBA4C187DC82B008F2E8A /* UIKit.framework */,
@@ -115,10 +172,13 @@
 		B3CEBA50187DC82B008F2E8A /* panels */ = {
 			isa = PBXGroup;
 			children = (
+				B3CEBA80187DC864008F2E8A /* panels.xcdatamodeld */,
+				B3CEBA95187DCA35008F2E8A /* Model */,
+				B3CEBA83187DC96D008F2E8A /* Main.storyboard */,
+				B3CEBA8E187DC9FF008F2E8A /* Controllers */,
 				B3CEBA59187DC82B008F2E8A /* panelsAppDelegate.h */,
 				B3CEBA5A187DC82B008F2E8A /* panelsAppDelegate.m */,
 				B3CEBA5F187DC82B008F2E8A /* Images.xcassets */,
-				B3CEBA5C187DC82B008F2E8A /* panels.xcdatamodeld */,
 				B3CEBA51187DC82B008F2E8A /* Supporting Files */,
 			);
 			path = panels;
@@ -127,6 +187,7 @@
 		B3CEBA51187DC82B008F2E8A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B33722CD18808FB500C56B3D /* SVProgressHUD */,
 				B3CEBA52187DC82B008F2E8A /* panels-Info.plist */,
 				B3CEBA53187DC82B008F2E8A /* InfoPlist.strings */,
 				B3CEBA56187DC82B008F2E8A /* main.m */,
@@ -151,6 +212,40 @@
 				B3CEBA70187DC82B008F2E8A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3CEBA8E187DC9FF008F2E8A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B33722CA187F53A300C56B3D /* panelsAddComicTableController.h */,
+				B33722CB187F53A300C56B3D /* panelsAddComicTableController.m */,
+				B3CEBA85187DC9D2008F2E8A /* panelsNavigationController.h */,
+				B3CEBA86187DC9D2008F2E8A /* panelsNavigationController.m */,
+				B3CEBA88187DC9EA008F2E8A /* panelsBaseTableController.h */,
+				B3CEBA89187DC9EA008F2E8A /* panelsBaseTableController.m */,
+				B33722D91880AF7600C56B3D /* panelsComicCell.h */,
+				B33722DA1880AF7600C56B3D /* panelsComicCell.m */,
+				B33722DC1880C37300C56B3D /* panelsCollectionCell.h */,
+				B33722DD1880C37300C56B3D /* panelsCollectionCell.m */,
+				B3CEBA8B187DC9FA008F2E8A /* panelsCollectionTableController.h */,
+				B3CEBA8C187DC9FA008F2E8A /* panelsCollectionTableController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B3CEBA95187DCA35008F2E8A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B33722BE187F39F500C56B3D /* RARHandler.h */,
+				B33722BF187F39F500C56B3D /* RARHandler.mm */,
+				B368B522187DD58E0017CCDE /* ComicShelf.h */,
+				B368B523187DD58E0017CCDE /* ComicShelf.m */,
+				B3CEBA92187DCA2F008F2E8A /* Comic.h */,
+				B3CEBA93187DCA2F008F2E8A /* Comic.m */,
+				B3CEBA8F187DCA2F008F2E8A /* Collection.h */,
+				B3CEBA90187DCA2F008F2E8A /* Collection.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +326,8 @@
 			files = (
 				B3CEBA55187DC82B008F2E8A /* InfoPlist.strings in Resources */,
 				B3CEBA60187DC82B008F2E8A /* Images.xcassets in Resources */,
+				B3CEBA84187DC96D008F2E8A /* Main.storyboard in Resources */,
+				B33722D218808FB500C56B3D /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +346,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3CEBA5E187DC82B008F2E8A /* panels.xcdatamodeld in Sources */,
 				B3CEBA57187DC82B008F2E8A /* main.m in Sources */,
+				B3CEBA82187DC864008F2E8A /* panels.xcdatamodeld in Sources */,
+				B33722CC187F53A300C56B3D /* panelsAddComicTableController.m in Sources */,
+				B3CEBA87187DC9D2008F2E8A /* panelsNavigationController.m in Sources */,
+				B33722DB1880AF7600C56B3D /* panelsComicCell.m in Sources */,
 				B3CEBA5B187DC82B008F2E8A /* panelsAppDelegate.m in Sources */,
+				B33722D318808FB500C56B3D /* SVProgressHUD.m in Sources */,
+				B33722C0187F39F500C56B3D /* RARHandler.mm in Sources */,
+				B3CEBA91187DCA2F008F2E8A /* Collection.m in Sources */,
+				B3CEBA94187DCA2F008F2E8A /* Comic.m in Sources */,
+				B3CEBA8A187DC9EA008F2E8A /* panelsBaseTableController.m in Sources */,
+				B3CEBA8D187DC9FA008F2E8A /* panelsCollectionTableController.m in Sources */,
+				B33722DE1880C37300C56B3D /* panelsCollectionCell.m in Sources */,
+				B368B524187DD58E0017CCDE /* ComicShelf.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,12 +476,20 @@
 		B3CEBA78187DC82B008F2E8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jimi2204/Developer/panels,
+					/Users/jimi2204/Developer/panels/panels,
+					/Users/jimi2204/Developer/panels/panels/Frameworks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "panels/panels-Prefix.pch";
 				INFOPLIST_FILE = "panels/panels-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -381,12 +497,20 @@
 		B3CEBA79187DC82B008F2E8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jimi2204/Developer/panels,
+					/Users/jimi2204/Developer/panels/panels,
+					/Users/jimi2204/Developer/panels/panels/Frameworks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "panels/panels-Prefix.pch";
 				INFOPLIST_FILE = "panels/panels-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -452,6 +576,7 @@
 				B3CEBA79187DC82B008F2E8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3CEBA7A187DC82B008F2E8A /* Build configuration list for PBXNativeTarget "panelsTests" */ = {
 			isa = XCConfigurationList;
@@ -460,18 +585,19 @@
 				B3CEBA7C187DC82B008F2E8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B3CEBA5C187DC82B008F2E8A /* panels.xcdatamodeld */ = {
+		B3CEBA80187DC864008F2E8A /* panels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B3CEBA5D187DC82B008F2E8A /* panels.xcdatamodel */,
+				B3CEBA81187DC864008F2E8A /* panels.xcdatamodel */,
 			);
-			currentVersion = B3CEBA5D187DC82B008F2E8A /* panels.xcdatamodel */;
+			currentVersion = B3CEBA81187DC864008F2E8A /* panels.xcdatamodel */;
 			path = panels.xcdatamodeld;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */

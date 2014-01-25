@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A3017" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+    <entity name="Collection" representedClassName="Collection" syncable="YES">
+        <attribute name="comicVineURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="collects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comic" inverseName="isPartOf" inverseEntity="Comic" syncable="YES"/>
+    </entity>
+    <entity name="Comic" representedClassName="Comic" syncable="YES">
+        <attribute name="comicVineURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coverURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pagesRead" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volumeNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="isPartOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Collection" inverseName="collects" inverseEntity="Collection" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Comic" positionX="160" positionY="192" width="128" height="148"/>
+        <element name="Collection" positionX="-65" positionY="185" width="128" height="103"/>
+    </elements>
 </model>

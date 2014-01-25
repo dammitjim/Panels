@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ComicShelf.h"
 
 @interface panelsCollectionTableController : UITableViewController
+
+- (void)setCollectionTo:(Collection *)inputCollection;
 
 @end
