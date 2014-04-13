@@ -7,6 +7,7 @@
 //
 
 #import "panelsNavigationController.h"
+#import "panelsReaderViewController.h"
 
 @interface panelsNavigationController ()
 
@@ -20,10 +21,42 @@
     if (self) {
         // Custom initialization
         self.title = @"Panels";
+        [self.navigationBar setAutoresizesSubviews:NO];
     }
     return self;
 }
 
+//- (BOOL)shouldAutorotate
+//{
+//    id currentViewController = self.topViewController;
+////    NSLog(@"HEHEYHEYHEYHEYHEY");
+//    if ([currentViewController isKindOfClass:[panelsReaderViewController class]])
+//        return YES;
+//    
+//    return NO;
+//}
+
+- (BOOL)shouldAutorotate
+{
+    return self.topViewController.shouldAutorotate;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+//    NSArray *viewControllers = self.navigationController.viewControllers;
+    UIViewController *rootViewController = [self visibleViewController];
+    if ([rootViewController isKindOfClass:[panelsReaderViewController class]])
+    {
+//        NSLog(@"It's a reader");
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+    else
+    {
+//        NSLog(@"It's not");
+        return UIInterfaceOrientationMaskPortrait;
+    }
+//    return UIInterfaceOrientationMaskAll;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,6 +66,8 @@
                                                };
     
     self.navigationBar.tintColor = [UIColor orangeColor];
+    [self.navigationBar setAutoresizesSubviews:NO];
+    [self.navigationBar setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
 }
 
 - (void)didReceiveMemoryWarning

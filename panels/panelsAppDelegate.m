@@ -16,6 +16,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+    NSLog(@"App launched");
+    
+//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"HasLaunchedOnce"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+    {
+        // first launch, set up settings default keys
+        NSLog(@"First launch");
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"settingsTrashComics"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"settingsDefaultFirst"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"settingsNotifications"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"settingsMarkRead"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"settingsSound"];
+        
+        NSLog(@"Set keys");
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     return YES;
 }
 

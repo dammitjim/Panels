@@ -12,6 +12,13 @@
 
 @interface RARHandler : NSObject
 
-- (void)decompressURL:(NSString *)filePathIn forTitle:(NSString *)title forVolume:(NSNumber *)volumeNumberIn;
+/**
+ *  Decompresses .rar file at given url
+ *
+ *  @param filePathIn     path to .rar
+ *  @param title          title of comic
+ *  @param volumeNumberIn volume number of comic
+ */
+- (int)decompressURL:(NSString *)filePathIn forTitle:(NSString *)title forVolume:(NSNumber *)volumeNumberIn;
 
 @end

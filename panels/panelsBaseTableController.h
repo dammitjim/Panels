@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "panelsAppDelegate.h"
 #import "ComicShelf.h"
+#import "AudioToolbox/AudioToolbox.h"
 
 @interface panelsBaseTableController : UITableViewController <UIActionSheetDelegate>
 

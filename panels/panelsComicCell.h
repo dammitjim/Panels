@@ -14,4 +14,6 @@
 - (void)setComicVolume:(NSNumber *)volume;
 
 - (void)setComicImage:(UIImage *)image;
+
+- (void)setComicPageProgress:(NSNumber *)totalPages atPage:(NSNumber *)page isCompleted:(BOOL)completed;
 @end

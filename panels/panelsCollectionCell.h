@@ -15,5 +15,9 @@
 - (void)setCollectionTitle:(NSString *)title;
 
 - (void)setCollectionImageView:(Collection *)collectionIn;
-
+- (void)reloadScroller:(UIScrollView *)scrollViewIn;
+- (void)clearSubviews;
+- (void)addCoverToView:(UIImage *)cover;
+- (void)setCollectionFileCount:(int)count;
+- (void)setCollectionFileProgress:(Collection *)collection;
 @end

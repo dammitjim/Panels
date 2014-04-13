@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5243435C-AD25-4D14-BCF8-187AF60020E3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>panels</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A893CC2C-08CA-48B2-A54F-C771C5B94F09</key>
+		<string>https://github.com/John-Lluch/SWRevealViewController.git</string>
+		<key>CA1479B8-E406-4EDE-B9EA-F115FB2F83F7</key>
+		<string>https://github.com/Jim2204/Panels.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>panels.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A893CC2C-08CA-48B2-A54F-C771C5B94F09</key>
+		<string>../../../SWRevealViewController</string>
+		<key>CA1479B8-E406-4EDE-B9EA-F115FB2F83F7</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Jim2204/Panels.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CA1479B8-E406-4EDE-B9EA-F115FB2F83F7</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CA1479B8-E406-4EDE-B9EA-F115FB2F83F7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>panels</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A893CC2C-08CA-48B2-A54F-C771C5B94F09</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SWRevealViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

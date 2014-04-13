@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A3017" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Collection" representedClassName="Collection" syncable="YES">
         <attribute name="comicVineURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -8,15 +8,19 @@
     </entity>
     <entity name="Comic" representedClassName="Comic" syncable="YES">
         <attribute name="comicVineURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="coverURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="cover" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isMoving" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isTrashed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="pagesRead" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalPages" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="volumeNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="isPartOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Collection" inverseName="collects" inverseEntity="Collection" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Comic" positionX="160" positionY="192" width="128" height="148"/>
         <element name="Collection" positionX="-65" positionY="185" width="128" height="103"/>
+        <element name="Comic" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>
