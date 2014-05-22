@@ -2,7 +2,7 @@
 //  Comic.h
 //  panels
 //
-//  Created by James A Hill on 02/04/2014.
+//  Created by James A Hill on 22/05/2014.
 //  Copyright (c) 2014 Jcodr. All rights reserved.
 //
 
@@ -16,13 +16,13 @@
 @property (nonatomic, retain) NSString * comicVineURL;
 @property (nonatomic, retain) NSNumber * completed;
 @property (nonatomic, retain) NSData * cover;
+@property (nonatomic, retain) NSNumber * isMoving;
 @property (nonatomic, retain) NSNumber * isTrashed;
 @property (nonatomic, retain) NSNumber * pagesRead;
 @property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * totalPages;
-@property (nonatomic, retain) NSNumber * volumeNumber;
-@property (nonatomic, retain) NSNumber * isMoving;
+@property (nonatomic, retain) NSDecimalNumber * volumeNumber;
 @property (nonatomic, retain) Collection *isPartOf;
 
 @end

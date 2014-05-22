@@ -77,21 +77,40 @@
                 // If folder doesn't already exist
                 if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
                     [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&error]; //Create folder
-                
+                    NSData *data;
                     for(int i = 0; i < [self.files count] ; i++) {
                         @autoreleasepool {
-                            NSData *data = [self.unrar extractStream:[self.files objectAtIndex:i]];
+                            data = [self.unrar extractStream:[self.files objectAtIndex:i]];
                             
                             if (data != nil) {
                                 
                                 UIImage *imageToSave2 = [[UIImage alloc] initWithData:data];
+                                CGSize imageSize;
+                                
+                                if(imageToSave2.size.width > imageToSave2.size.height) {
+                                    if(imageToSave2.size.height>1136) {
+                                        if(imageToSave2.size.width>2560) {
+                                            imageSize = CGSizeMake(2560, 1136);
+                                        } else {
+                                            imageSize = CGSizeMake(imageToSave2.size.width, imageToSave2.size.height);
+                                        }
+                                    }
+                                } else {
+                                    if(imageToSave2.size.height>1136) {
+                                        imageSize = CGSizeMake(640, 1136);
+                                    } else {
+                                        imageSize = CGSizeMake(imageToSave2.size.width, imageToSave2.size.height);
+                                    }
+                                }
+                                
+                                imageToSave2 = [self compressImage:imageToSave2 scaledToSize:imageSize];
                                 NSData *binaryImageData2 = [[NSData alloc] init];
                                 
                                 if(i == 0) {
                                     
                                     // Generate comic cover and compress it for smaller file size
-                                    CGSize imageSize = CGSizeMake(160, 256);
-                                    UIImage *coverImage = [self compressImage:imageToSave2 scaledToSize:imageSize];
+                                    CGSize coverSize = CGSizeMake(160, 256);
+                                    UIImage *coverImage = [self compressImage:imageToSave2 scaledToSize:coverSize];
                                     binaryImageData2 = UIImagePNGRepresentation(coverImage);
                                     [binaryImageData2 writeToFile:[dataPath stringByAppendingPathComponent:@"cover.jpg"] atomically:YES];
                                     

@@ -32,6 +32,7 @@
 @property (nonatomic) SystemSoundID confirmSound;
 @property (nonatomic) SystemSoundID denySound;
 @property (strong, nonatomic) NSUserDefaults *defaults;
+@property (strong, nonatomic) Collection *collectionToBeRemoved;
 @end
 
 @implementation panelsBaseTableController
@@ -114,6 +115,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"viewWillAppear base");
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.title = @"Collection";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{
@@ -190,6 +192,7 @@
     
     // Creates tap recognizer
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     
     // Configure the cell...
     if([[self.shelf getItemFromShelfAtIndex:(int)indexPath.row] isKindOfClass:[Comic class]]) {
@@ -264,6 +267,7 @@
         [cell setCollectionFileCount:[covers count]];
         [cell setCollectionFileProgress:theCollection];
         [cell.contentView addGestureRecognizer:tapGesture];
+        [cell.contentView addGestureRecognizer:longPress];
         
         return cell;
     }
@@ -314,6 +318,34 @@
     
     
 }
+
+-(void)longPress: (UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Long press");
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Rename", nil];
+        
+        CGPoint p = [sender locationInView:[self tableView]];
+        NSIndexPath *indexPath = [[self tableView] indexPathForRowAtPoint:p];
+        self.collectionToBeRemoved = [self.shelf getItemFromShelfAtIndex:(int)indexPath.row];
+        
+        [actionSheet showInView:self.view];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+//    NSLog(@"The %@ button was tapped.", [actionSheet buttonTitleAtIndex:buttonIndex]);
+    if(buttonIndex==0) {
+//        NSLog(@"Delete pressed");
+        [self.shelf removeCollection:self.collectionToBeRemoved];
+        [self.tableView reloadData];
+        
+    } else if(buttonIndex==1) {
+//        NSLog(@"Rename pressed");
+    }
+}
+
 
 /**
  *  Handles table cells being tapped

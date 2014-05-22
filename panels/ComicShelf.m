@@ -203,7 +203,7 @@
     return self.unreadItems;
 }
 
--(Comic *)addComicToShelfWithParameters:(NSString *)title withVolume:(NSNumber *)volumeNumberIn withPath:(NSString *)filePath inCollection:(NSString *)collectionTitle withPageCount:(int)pages {
+-(Comic *)addComicToShelfWithParameters:(NSString *)title withVolume:(NSDecimalNumber *)volumeNumberIn withPath:(NSString *)filePath inCollection:(NSString *)collectionTitle withPageCount:(int)pages {
     NSLog(@"Adding %@ #%@ to shelf", title, volumeNumberIn);
     if(self.context) {
         

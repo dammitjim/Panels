@@ -51,12 +51,6 @@
 }
 
 - (void)setCollectionTitle:(NSString *)title {
-//    UIView *label = (UIView *)[self viewWithTag:301];
-//    label.layer.masksToBounds = NO;
-//    label.layer.shadowColor = [UIColor grayColor].CGColor;
-//    label.layer.shadowOffset = CGSizeMake(10, 10);
-//    label.layer.shadowOpacity = 0.2;
-//    label.layer.shadowRadius = 5;
     self.titleLabel.text = title;
 }
 

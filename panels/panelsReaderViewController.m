@@ -25,18 +25,24 @@
 @property (strong, nonatomic) UIImageView *bottomBarSliderPreview;
 @property (strong, nonatomic) UILabel *bottomBarSliderPreviewLabel;
 @property (strong, nonatomic) UIView *notificationBox;
+@property (strong, nonatomic) UIImage *nextPage;
+@property (strong, nonatomic) UIImage *previousPage;
+
 @property BOOL turningEnabled;
 @property (nonatomic) CGSize screenSize;
 @property BOOL navigationHidden;
 @property BOOL hideStatusBar;
+
 @property (strong, nonatomic) ComicShelf *saveShelf;
 @property BOOL currentPageIsDouble;
 @property BOOL isRotated;
+
 @property (nonatomic) SystemSoundID sliderSound;
 @property (nonatomic) SystemSoundID sliderRelease;
 @property (nonatomic) SystemSoundID notification;
 @property (nonatomic) SystemSoundID thud;
 @property (nonatomic) SystemSoundID coin;
+
 @property (nonatomic) int currentSliderPreviewPage;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 
@@ -79,6 +85,38 @@
     return _previousPageView;
 }
 
+- (void)loadConcurrentImages {
+    // Dispatches task to the GCD
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // long-running code
+        NSString *nextPagePath = [[NSString alloc] initWithFormat:@"/%@/%@/%i.png" ,[self.currentReading title] , [[self.currentReading volumeNumber] stringValue], self.pagesRead+1];
+        NSString *dataPath = [self.documentsDirectory stringByAppendingPathComponent:nextPagePath];
+        NSLog(@"%@", dataPath);
+        
+        // Loads image into the view by building a filepath string and getting data from the path
+        self.nextPage = [UIImage imageWithData:[NSData dataWithContentsOfFile:dataPath]];
+        
+        if(self.pagesRead!=0) {
+            NSString *previousPagePath = [[NSString alloc] initWithFormat:@"/%@/%@/%i.png" ,[self.currentReading title] ,
+                                          [[self.currentReading volumeNumber] stringValue], self.pagesRead-1];
+            dataPath = [self.documentsDirectory stringByAppendingPathComponent:previousPagePath];
+            NSLog(@"%@", dataPath);
+            
+            // Loads image into the view by building a filepath string and getting data from the path
+            self.previousPage = [UIImage imageWithData:[NSData dataWithContentsOfFile:dataPath]];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Waits for confirmation that the final cover has been added
+            NSLog(@"Images loaded boss");
+        });
+    });
+}
+
+/**
+ *  Zoom to point in the view on double tap
+ *
+ *  @param recognizer
+ */
 - (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer {
     //NSLog(@"Double Tap");
     // Gets the point that was tapped
@@ -103,43 +141,51 @@
     [self.readingScroll zoomToRect:rectToZoomTo animated:YES];
 }
 
+/**
+ *  Hide or show navigation bar
+ *
+ *  @param recognizer
+ */
 - (void)scrollViewTapped:(UITapGestureRecognizer*)recognizer {
+    
     NSLog(@"%f", self.navigationController.navigationBar.frame.size.height);
+    
     // If the navigation bar is already hidden
     if(self.navigationHidden) {
+        
 //        [[self navigationController] setNavigationBarHidden:NO animated:YES];
         CGRect tmpFram = self.navigationController.navigationBar.frame;
         tmpFram.size.height += 25;
         self.navigationController.navigationBar.frame = tmpFram;
         self.navigationHidden = false;
         self.hideStatusBar = false;
+        
         [UIView animateWithDuration:0.5 animations:^{
+            
             self.bottomBar.alpha = 1.0;
             [self setNeedsStatusBarAppearanceUpdate];
-
             self.navigationController.navigationBar.frame = CGRectMake(0, 20, self.navigationController.navigationBar.frame.size.width, 44);
-//                    }completion:^(BOOL finished) {
+            
         }];
         
-//        self.readingScroll.frame = CGRectMake(0, 0, 1000, 1000);
     } else {
-//        // Hide the nav
         
+        // Hide the nav
         self.navigationHidden = true;
         self.hideStatusBar = true;
-//        [[self navigationController] setNavigationBarHidden:YES animated:YES];
+        
         [UIView animateWithDuration:0.5 animations:^{
+            
             self.bottomBar.alpha = 0;
             [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.frame = CGRectMake(0, -100, self.navigationController.navigationBar.frame.size.width, 44);
-//
+            
         }completion:^(BOOL finished) {
+            
             NSLog(@"Completed");
+            
         }];
-
-//
     }
-//        [self logViews];
 }
 
 
@@ -151,9 +197,14 @@
     return self.hideStatusBar;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+/**
+ *  Set various graphical elements and housekeeping for the view
+ */
+- (void)setTheme {
+    
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     self.navigationController.navigationBar.topItem.title = @"";
+    
     // Navigation controller configuration for a black theme
     self.navigationHidden = false;
     self.hideStatusBar = false;
@@ -161,24 +212,24 @@
     self.currentPageIsDouble = false;
     self.currentSliderPreviewPage = 0;
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    // Get initial orientation to be loaded into
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
     if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        
         self.isRotated = false;
         NSLog(@"False");
+        
     } else {
+        
         NSLog(@"True");
         self.isRotated = true;
+        
     }
-//    [self.navigationController.navigationBar setAutoresizesSubviews:NO];
-//    self.navigationController.view.autoresizesSubviews=NO;
+    
     [self.navigationController.navigationBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-//    [self.navigationController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-//    [self.view setAutoresizesSubviews:NO];
-//    self.isRotated = false;
-    self.pagesRead = [[self.currentReading pagesRead] intValue];
-//    [self.currentReading setCompleted:0];
-    NSLog(@"Current page: %d", self.pagesRead);
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     self.navigationController.navigationBar.titleTextAttributes = @{
                                                                     NSForegroundColorAttributeName : [UIColor whiteColor]
@@ -187,6 +238,21 @@
     self.navigationController.navigationBar.opaque = NO;
     self.navigationController.navigationBar.translucent = YES;
     self.view.backgroundColor = [UIColor blackColor];
+}
+
+/**
+ *  Load current page and set various theme options
+ */
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    // Set theme and housekeeping variables
+//    [self.navigationController.navigationBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [self setTheme];
+    
+    self.pagesRead = [[self.currentReading pagesRead] intValue];
+    NSLog(@"Current page: %d", self.pagesRead);
     
     // Sets the document root for future calculations
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,    NSUserDomainMask, YES);
@@ -195,15 +261,24 @@
     // Gets the last read page of the current comic
     NSLog(@"Current comic: %@ #%@", [self.currentReading title], [self.currentReading volumeNumber]);
     NSString *imagePath;
+    
+    [self loadConcurrentImages];
+    
     if([[self.currentReading completed] boolValue]) {
+        
         if([self.defaults boolForKey:@"settingsDefaultFirst"]) {
-                imagePath = [[NSString alloc] initWithFormat:@"/%@/%@/%i.png" ,[self.currentReading title] , [[self.currentReading volumeNumber] stringValue], 0];
+            
+            imagePath = [[NSString alloc] initWithFormat:@"/%@/%@/%i.png" ,[self.currentReading title] , [[self.currentReading volumeNumber] stringValue], 0];
             self.pagesRead = 0;
             self.currentReading.pagesRead = 0;
+            
         }
     } else {
+        
         imagePath = [[NSString alloc] initWithFormat:@"/%@/%@/%i.png" ,[self.currentReading title] , [[self.currentReading volumeNumber] stringValue], self.pagesRead];
+
     }
+    
     NSString *dataPath = [self.documentsDirectory stringByAppendingPathComponent:imagePath];
     NSLog(@"%@", dataPath);
     
@@ -216,17 +291,13 @@
     // Calculate screen size based on device
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
-//    NSLog(@"Screen scale is %f", screenScale);
 
     self.screenSize = CGSizeMake(screenBounds.size.width * (screenScale+0.1), screenBounds.size.height * screenScale);
     self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size= self.screenSize};
     self.previousPageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size= self.screenSize};
     self.readingScroll.contentSize = self.screenSize;
     
-//    self.readingScroll.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
-//    [self.imageView setContentMode:UIViewContentModeScaleAspectFill];
-//    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
+    NSLog(@"Frame height is: %f", self.readingScroll.frame.size.height);
     // IF IMAGE IS A TWO PAGE SPREAD
     if(image.size.width>image.size.height) {
         
@@ -246,10 +317,14 @@
         self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size = DoublePager};
         self.readingScroll.zoomScale = zoomScale;
         self.currentPageIsDouble = true;
+        
     } else {
+        
         // Regular page, regular scroll size
         float zoomScale = self.readingScroll.zoomScale;
+        
         if(self.isRotated) {
+            
             self.readingScroll.zoomScale = 1.0;
             CGSize newSize = self.screenSize;
             newSize.width = newSize.width*2;
@@ -259,20 +334,17 @@
             NSLog(@"New bounds: %fx%f", self.view.bounds.size.width, self.view.bounds.size.height);
             self.readingScroll.frame = self.view.bounds;
             self.readingScroll.zoomScale = 0.5;
+            
         } else {
+            
             self.readingScroll.zoomScale = 1.0;
             self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size= self.screenSize};
             self.readingScroll.zoomScale = zoomScale;
+            
         }
         
     }
-    
-//    [self.readingScroll setAutoresizingMask:UIViewAutoresizingNone];
-//    [self.imageView setAutoresizingMask:UIViewAutoresizingNone];
-//    [self.view setAutoresizingMask:UIViewAutoresizingNone];
-//    [self.view.superview setAutoresizingMask:UIViewAutoresizingNone];
-//    [self.navigationController.navigationBar setAutoresizingMask:UIViewAutoresizingNone];
-    
+    NSLog(@"CGSize of image: %fx%f", image.size.width, image.size.height);
     [self.readingScroll addSubview:self.imageView];
     [self buildBottomBar];
     [self createSoundId];
@@ -293,7 +365,6 @@
     [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
     [self.readingScroll addGestureRecognizer:singleTapRecognizer];
     
-//    [self completionBar];
 }
 
 /**
@@ -305,30 +376,42 @@
     if(self.readingScroll.contentOffset.y > 0) {
 //        [self.readingScroll setContentOffset: CGPointMake(self.readingScroll.contentOffset.x, 0)];
     }
-    //NSLog(@"%f", scrollView.contentOffset.y);
+    
     // Checks if the content is offset from the image frame (dragged outside the boundaries)
     if(self.turningEnabled) {
+        
         if(scrollView.contentOffset.x<-50 && scrollView.contentOffset.x>-55) {
+            
             if(!self.readingScroll.zooming) {
+                
                 NSLog(@"Previous page");
+                
                 if(self.pagesRead!=0) {
+                    
                     self.pagesRead--;
                     [self updatePage:self.pagesRead fromPage:self.pagesRead+1];
+                    
                 }
             }
         }
         
         // Does the same but for the right side, extra math required as the offset starts at 360 rather than 0
         if (scrollView.contentOffset.x > (scrollView.contentSize.width - scrollView.frame.size.width)) {
+            
             float size = scrollView.contentSize.width - scrollView.frame.size.width;
+            
             // If the offset boundary to turn the page has been reached and the image isn't currently zooming
             if((size - scrollView.contentOffset.x)<-50 && (size - scrollView.contentOffset.x)>-55) {
+                
                 if(!self.readingScroll.zooming) {
+                    
                     NSLog(@"Next page with offset: %f", scrollView.contentOffset.x);
                     // Increment pages read
                     self.pagesRead++;
                     NSLog(@"Changing page to: %d", self.pagesRead);
+                    
                     [self updatePage:self.pagesRead fromPage:self.pagesRead-1];
+                    
                 }
             }
         }
@@ -354,16 +437,15 @@
     self.bottomBar.tintColor = [UIColor orangeColor];
     
     self.bottomBarSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 15, screenBounds.size.width-130, 30)];
-    NSLog(@"%f", screenBounds.size.width);
+    
     self.bottomBarSlider.maximumValue = [[self.currentReading totalPages] floatValue];
-    NSLog(@"Max value: %f", self.bottomBarSlider.maximumValue);
     self.bottomBarSlider.minimumValue = 1;
+    
     self.bottomBarSlider.tintColor = [UIColor orangeColor];
     self.bottomBarSlider.value = [[self.currentReading pagesRead] floatValue];
     [self.bottomBarSlider addTarget:self action:@selector(sliderValueChange: ) forControlEvents:UIControlEventValueChanged];
     [self.bottomBarSlider addTarget:self action:@selector(sliderValueEnd: ) forControlEvents:UIControlEventTouchUpInside];
     self.bottomBarSlider.continuous = YES;
-//    NSLog(@"Float value of totalpages: %f", [[self.currentReading totalPages] floatValue]);
     
     self.bottomBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenBounds.size.width-100, 15, 100, 30)];
     self.bottomBarLabel.textColor = [UIColor orangeColor];
@@ -396,9 +478,12 @@
     self.bottomBarSliderPreview.hidden = YES;
     double pageValue = roundf(self.bottomBarSlider.value);
     NSLog(@"Setting page to: %d", (int)pageValue);
-    [self updatePage:(int)pageValue-1 fromPage:[[self.currentReading pagesRead] intValue]];
+    self.nextPage = [self getNextPageImage:(int)pageValue-2];
+    self.previousPage = [self getPreviousPageImage:(int)pageValue];
+    [self updatePage:(int)pageValue fromPage:self.pagesRead];
     self.pagesRead = (int)pageValue-1;
     self.bottomBarLabel.text = [NSString stringWithFormat:@"Page %d/%d", self.pagesRead+1, [[self.currentReading totalPages] intValue]];
+    [self loadConcurrentImages];
 }
 
 - (void)sliderValueChange:(id)sender {
@@ -433,9 +518,11 @@
     
 }
 - (void)completionBar {
+    
     self.notificationBox.center = self.view.center;
     self.notificationBox.opaque = YES;
     self.notificationBox.alpha = 0;
+    
     UIImageView *tickBox = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     [tickBox setImage:[UIImage imageNamed:@"Great-success.png"]];
     
@@ -453,46 +540,9 @@
                     [tickBox removeFromSuperview];
                 }];
             }];
-
-    ////    tickBox.center = self.view.center;
-////    self.notificationBox.center = self.view.center;
-//    self.notificationBox.opaque = YES;
-//    self.notificationBox.alpha = 0;
-//    CGRect originalFrame = self.notificationBox.frame;
-//    CGRect frame2 = originalFrame;
-//    frame2.origin.x = -500;
-//    UIImageView *tickBox = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 3000, 3000)];
-////    tickBox.center = self.view.center;
-//    CGRect frame = tickBox.frame;
-//    frame.size.height = 200;
-//    frame.size.width = 220;
-//    [tickBox setImage:[UIImage imageNamed:@"read_stamp.png"]];
-//    [self.view addSubview:self.notificationBox];
-//    [self.notificationBox addSubview:tickBox];
-////    progressDrop.alpha
-//    
-////    AudioServicesPlaySystemSound(self.notification);
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.notificationBox.alpha = 1.0;
-//        tickBox.frame = frame;
-//    } completion:^(BOOL finished) {
-//        if(![self.defaults boolForKey:@"settingsSound"]) {
-//            AudioServicesPlaySystemSound(self.thud);
-////            AudioServicesPlaySystemSound(self.r)
-//        }
-//        [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            self.notificationBox.alpha = 0;
-////            CGRect originalFrame = self.notificationBox.frame;
-////            CGRect frame2 = originalFrame;
-////            frame2.origin.x = -500;
-////            self.notificationBox.frame = frame2;
-//        }completion:^(BOOL finished) {
-//            [tickBox removeFromSuperview];
-////            self.notificationBox.frame = originalFrame;
-////            self.notificationBox.center = self.view.center;
-//        }];
-//    }];
+    
     self.notificationBox.center = self.view.center;
+    
 }
 
 
@@ -518,10 +568,14 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+
     NSLog(@"%d", self.pagesRead);
     self.readingScroll.delegate = nil;
+    
     if(![[self.currentReading completed] boolValue]) {
+        
         [self.saveShelf updatePagesReadForComic:self.currentReading toPage:self.pagesRead];
+        
     }
 
 }
@@ -530,6 +584,7 @@
 {
     return self.imageView;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -568,8 +623,9 @@
         forwardsOrBackwards = true;
         
         // Set the placeholder image to the next page's image
-//        image = [self getNextPageImage:currentPage];
-        image = [self getPageImage:pageNumber];
+        
+//        image = [self getPageImage:pageNumber];
+        image = self.nextPage;
         
         // If double page spread
         if(image.size.width>image.size.height) {
@@ -676,16 +732,18 @@
                                  }
                              }];
 //            NSLog(@"%d/%d", pageNumber, [[self.currentReading totalPages] intValue]);
+            [self loadConcurrentImages];
+            
             if(pageNumber+1 == [[self.currentReading totalPages] intValue] || pageNumber == [[self.currentReading totalPages] intValue]) {
                 NSLog(@"Yall reached the end");
                 if([[self.currentReading completed] intValue]==0) {
                     NSLog(@"Hasn't completed");
-                    [self completionBar];
+//                    [self completionBar];
                     [self.currentReading setCompleted:[NSNumber numberWithBool:1]];
                     [self.saveShelf setComicCompleted:self.currentReading];
                 } else {
                     NSLog(@"Comic completed");
-                    [self completionBar];
+//                    [self completionBar];
                 }
             }
         } else {
@@ -718,6 +776,7 @@
                     [self setCurrentReading:nextComic];
                     self.pagesRead = 0;
                     [self updatePage:0 fromPage:0];
+                    [self loadConcurrentImages];
                     [self.bottomBar removeFromSuperview];
                     [self buildBottomBar];
                     self.navigationItem.title = [NSString stringWithFormat:@"%@ #%d", [nextComic title], [[nextComic volumeNumber] intValue]];
@@ -728,7 +787,8 @@
         // Backwards
         forwardsOrBackwards = false;
 //        image = [self getPreviousPageImage:currentPage];
-        image = [self getPageImage:pageNumber];
+//        image = [self getPageImage:pageNumber];
+        image = self.previousPage;
         
         if(image!=NULL) {
             
@@ -770,6 +830,7 @@
                 self.currentPageIsDouble = false;
                 
             }
+            
             [self.previousPageView setImage:image];
             
             CGRect frame = self.imageView.frame;
@@ -819,6 +880,7 @@
                                      [self.previousPageView removeFromSuperview];
                                  }
                              }];
+            [self loadConcurrentImages];
         } else {
             self.pagesRead = currentPage;
         }
@@ -883,7 +945,7 @@
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
     {
-        NSLog(@"called");
+//        NSLog(@"called");
         self.notificationBox.center = self.view.center;
         self.isRotated = true;
         float y = screenBounds.size.width- [UIApplication sharedApplication].statusBarFrame.size.width - 40;
@@ -900,23 +962,21 @@
         self.bottomBarSlider.frame = CGRectMake(10, 15, screenBounds.size.height-130, 30);
         
         if(self.currentPageIsDouble) {
-//            self.view.frame = CGRectMake(0, 0, 568, 320);
-//            [self.view setNeedsDisplay];
+            
             NSLog(@"%f", self.view.frame.size.width);
             
-//            self.view.bounds = CGRectMake(0, 0, 1024, 320);
             NSLog(@"It's a double page yo");
             self.readingScroll.zoomScale = 1.0;
             CGSize newSize = self.screenSize;
             newSize.height = newSize.height*1;
             newSize.width = newSize.width*2;
-//            newSize.width = newSize.width*2;
+
             self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size= newSize};
-//            self.imageView.frame = self.view.bounds;
+
             self.previousPageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size= newSize};
             NSLog(@"New bounds: %fx%f", self.view.bounds.size.width, self.view.bounds.size.height);
             self.readingScroll.frame = self.view.bounds;
-//            self.readingScroll.frame = CGRectMake(0,0, screenBounds.size.height, screenBounds.size.width);
+
             self.readingScroll.zoomScale = 0.5;
 
         } else {

@@ -141,7 +141,7 @@
     self.hasFinished = NO;
     
     // Dispatches task to the GCD
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         // long-running code
         for( int i = 0 ; i < count ; i++) {
             @autoreleasepool {
@@ -217,11 +217,17 @@
 
 -(NSNumber *)getVolumeNumber:(NSString *)fileName {
     
+    #define ACCEPTABLE_CHARACTERS @"123456789."
+    
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:fileName];
+    [title deleteCharactersInRange:NSMakeRange([fileName length]-4, 4)];
     // Removes all but integers and then casts it to a string
-    NSString *volumeString = [[fileName componentsSeparatedByCharactersInSet:
-                            [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
-                           componentsJoinedByString:@""];
-    NSNumber *volumeNumber = [[NSNumber alloc]initWithInt:(int)[volumeString integerValue]];
+    
+    NSString *volumeString = [[title componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+
+    NSNumber *volumeNumber = [[NSNumber alloc]initWithDouble:[volumeString doubleValue]];
+    NSLog(@"Volume number: %@", volumeNumber);
     return volumeNumber;
     
 }

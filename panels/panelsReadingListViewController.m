@@ -41,6 +41,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.title = @"Reading List";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{
@@ -52,6 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     // SideBar config
     NSLog(@"It loaded");
     self.interactable = YES;

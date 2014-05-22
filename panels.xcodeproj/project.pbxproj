@@ -49,7 +49,6 @@
 		B3CEBA8A187DC9EA008F2E8A /* panelsBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA89187DC9EA008F2E8A /* panelsBaseTableController.m */; };
 		B3CEBA8D187DC9FA008F2E8A /* panelsCollectionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA8C187DC9FA008F2E8A /* panelsCollectionTableController.m */; };
 		B3CEBA91187DCA2F008F2E8A /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CEBA90187DCA2F008F2E8A /* Collection.m */; };
-		B3D3502318948160007E91D9 /* ComicCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D3502218948160007E91D9 /* ComicCache.m */; };
 		B3D471E218F643D600E988DA /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = B3D471E018F643D600E988DA /* coin.wav */; };
 		B3D471E318F643D600E988DA /* thud.wav in Resources */ = {isa = PBXBuildFile; fileRef = B3D471E118F643D600E988DA /* thud.wav */; };
 		B3D471EC18F64FDD00E988DA /* panelsReadingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D471EB18F64FDD00E988DA /* panelsReadingListViewController.m */; };
@@ -163,8 +162,6 @@
 		B3CEBA8C187DC9FA008F2E8A /* panelsCollectionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panelsCollectionTableController.m; sourceTree = "<group>"; };
 		B3CEBA8F187DCA2F008F2E8A /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
 		B3CEBA90187DCA2F008F2E8A /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
-		B3D3502118948160007E91D9 /* ComicCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicCache.h; sourceTree = "<group>"; };
-		B3D3502218948160007E91D9 /* ComicCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicCache.m; sourceTree = "<group>"; };
 		B3D471E018F643D600E988DA /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = coin.wav; path = resources/coin.wav; sourceTree = "<group>"; };
 		B3D471E118F643D600E988DA /* thud.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = thud.wav; path = resources/thud.wav; sourceTree = "<group>"; };
 		B3D471EA18F64FDD00E988DA /* panelsReadingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = panelsReadingListViewController.h; sourceTree = "<group>"; };
@@ -255,6 +252,13 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		B33B1EC7192D2295007213E2 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		B3CEBA3C187DC82B008F2E8A = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +295,7 @@
 		B3CEBA50187DC82B008F2E8A /* panels */ = {
 			isa = PBXGroup;
 			children = (
+				B33B1EC7192D2295007213E2 /* iPad */,
 				B3F8901A1894378200995A70 /* resources */,
 				B3CEBA80187DC864008F2E8A /* panels.xcdatamodeld */,
 				B3CEBA95187DCA35008F2E8A /* Model */,
@@ -356,8 +361,6 @@
 		B3CEBA95187DCA35008F2E8A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3502118948160007E91D9 /* ComicCache.h */,
-				B3D3502218948160007E91D9 /* ComicCache.m */,
 				B3F890381894640A00995A70 /* Comic.h */,
 				B3F890391894640A00995A70 /* Comic.m */,
 				B33722BE187F39F500C56B3D /* RARHandler.h */,
@@ -519,6 +522,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Jcodr;
 				TargetAttributes = {
+					B3CEBA44187DC82B008F2E8A = {
+						DevelopmentTeam = 5ZH55B56G5;
+					};
 					B3CEBA64187DC82B008F2E8A = {
 						TestTargetID = B3CEBA44187DC82B008F2E8A;
 					};
@@ -623,7 +629,6 @@
 				B3CEBA87187DC9D2008F2E8A /* panelsNavigationController.m in Sources */,
 				B360651E18DA26D1002A68FC /* panelsReaderViewController.m in Sources */,
 				B33722DB1880AF7600C56B3D /* panelsComicCell.m in Sources */,
-				B3D3502318948160007E91D9 /* ComicCache.m in Sources */,
 				B3D471EC18F64FDD00E988DA /* panelsReadingListViewController.m in Sources */,
 				B3CEBA5B187DC82B008F2E8A /* panelsAppDelegate.m in Sources */,
 				B33722D318808FB500C56B3D /* SVProgressHUD.m in Sources */,
@@ -759,6 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jimi2204/Developer/panels,
@@ -768,7 +774,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "panels/panels-Prefix.pch";
 				INFOPLIST_FILE = "panels/panels-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -779,6 +787,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jimi2204/Developer/panels,
@@ -788,7 +797,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "panels/panels-Prefix.pch";
 				INFOPLIST_FILE = "panels/panels-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};

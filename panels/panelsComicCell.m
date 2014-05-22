@@ -51,7 +51,7 @@
     CGSize imageSize = CGSizeMake(230, 370);
     image = [self compressImage:image scaledToSize:imageSize];
     if(image) {
-//        NSLog(@"Setting image for: %@", self.nameText.text);
+
         self.comicCover.image = image;
         self.comicCover.layer.shadowColor = [UIColor grayColor].CGColor;
         self.comicCover.layer.shadowOffset = CGSizeMake(0, 10);
@@ -59,7 +59,7 @@
         self.comicCover.layer.shadowRadius = 5;
         self.comicCover.clipsToBounds = NO;
     }
-    
+
 }
 
 - (void)setComicPageProgress:(NSNumber *)totalPages atPage:(NSNumber *)page isCompleted:(BOOL)completed{
@@ -69,18 +69,9 @@
         currentProgress = 0.0;
     } else if(completed) {
         currentProgress = 1.0;
-//        UIImageView *stampMe = (UIImageView *)[self viewWithTag:303];
-//        [stampMe setHidden:NO];
-//        [self.stampView setImage:[UIImage imageNamed:@"read_stamp.png"]];
-//        [self.stampView setHidden:NO];
-//        [self.progressBar setHidden:YES];
-//        [self.pageProgress setHidden:YES];
     } else {
-//        [self.stampView setHidden:YES];
         double something = (([page intValue]*100)/[totalPages intValue]);
         currentProgress = something/100;
-//        NSLog(@"Total pages: %@, Current Page: %@", totalPages, page);
-//        NSLog(@"Setting current progress to: %f", currentProgress);
     }
     NSMutableString *progressLabelString;
     if(completed) {
@@ -93,19 +84,8 @@
     [pageProgressLabel setText:progressLabelString];
     UIProgressView *progressBar = (UIProgressView *)[self viewWithTag:105];
     [progressBar setProgress:currentProgress];
+    
     [self.pageProgress setText:progressLabelString];
-
-//    if(currentProgress==1.0) {
-////        [self.progressBar setProgressTintColor:[UIColor greenColor]];
-//        progressBar.progressTintColor = [UIColor colorWithRed:0.247 green:0.886 blue:0.337 alpha:1.0];
-//        pageProgressLabel.textColor = [UIColor colorWithRed:0.247 green:0.886 blue:0.337 alpha:1.0];
-////        [self.progressBar setNeedsDisplay];
-//        NSLog(@"dat green tho");
-//    } else {
-//        progressBar.progressTintColor = [UIColor orangeColor];
-//        pageProgressLabel.textColor = [UIColor blackColor];
-////        NSLog(@"dat orange tho %f",currentProgress);
-//    }
     [self.progressBar setProgress:currentProgress];
 }
 

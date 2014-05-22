@@ -171,6 +171,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"viewWillAppear");
+    self.navigationController.title = [self.comicCollection title];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{
                                                                     NSForegroundColorAttributeName : [UIColor blackColor]
